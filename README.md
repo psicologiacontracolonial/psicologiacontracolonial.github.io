@@ -1,1 +1,0 @@
-# psicologiacontracolonial.github.io
