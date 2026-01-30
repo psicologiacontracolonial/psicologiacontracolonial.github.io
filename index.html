@@ -136,6 +136,26 @@
             }
         }
     </style>
+    <script>
+        // Fetch download counts from GitHub API
+        fetch('https://api.github.com/repos/psicologiacontracolonial/psicologiacontracolonial.github.io/releases/tags/2ed')
+            .then(response => response.json())
+            .then(release => {
+                release.assets.forEach(asset => {
+                    let elementId = '';
+                    if (asset.name.includes('.pdf')) elementId = 'pdf-count';
+                    else if (asset.name.includes('Layout.fixo.epub')) elementId = 'fixed-epub-count';
+                    else if (asset.name.includes('.epub')) elementId = 'epub-count';
+
+                    if (elementId) {
+                        const countElement = document.getElementById(elementId);
+                        if (countElement) {
+                            countElement.textContent = ` (${asset.download_count} downloads)`;
+                        }
+                    }
+                });
+            });
+    </script>
 </head>
 <body>
     <div class="container">
@@ -156,6 +176,18 @@
         </div>
 
         <div class="recommended-books">
+            <h3>Livro em Lançamento</h3>
+            <div class="book">
+                <p class="book-title">Artpad, 2ª edição. Um recurso para trabalho com grupos a partir do teatro</p>
+                <p class="book-author">Karla Galvão Adrião, Julie MacArtur e Maristela Moraes</p>
+                <p>Baixar:</p>
+                <p><a href="https://github.com/psicologiacontracolonial/psicologiacontracolonial.github.io/releases/download/2ed/ARTPAD.-.2.Edicao.pdf" target="_blank">PDF</a><span id="pdf-count"></span></p>
+                <p><a href="https://github.com/psicologiacontracolonial/psicologiacontracolonial.github.io/releases/download/2ed/ARTPAD.-.2.Edicao.epub" target="_blank">EPUB</a><span id="epub-count"></span></p>
+                <p><a href="https://github.com/psicologiacontracolonial/psicologiacontracolonial.github.io/releases/download/2ed/ARTPAD.-.2.Edicao.Layout.fixo.epub" target="_blank">EPUB (layout fixo)</a><span id="fixed-epub-count"></span></p>
+            </div>
+        </div>
+
+        <div class="recommended-books">
             <h3>Literatura Recomendada</h3>
             <div class="book">
                 <p class="book-title">Psicologia decolonial, contracolonial, por vir?</p>
@@ -166,11 +198,6 @@
                 <p class="book-title">Trabalho com grupos em psicologia: Perspectiva Feminista antirracista e contracolonial</p>
                 <p class="book-author">Karla Galvão Adrião, Maristela de Melo Moraes, Maria Juracy Filgueiras Toneli, Conceição Nogueira</p>
                 <p>Baixar: <a href="http://www.periodicoshumanas.uff.br/ecos/article/view/3205">periodicoshumanas.uff.br/ecos/article/view/3205</a></p>
-            </div>
-            <div class="book">
-                <p class="book-title">Artpad, 2ª edição. Um recurso para trabalho com grupos a partir do teatro</p>
-                <p class="book-author">Karla Galvão Adrião, Julie MacArtur e Maristela Moraes</p>
-                <p>Baixe aqui em breve!</p>
             </div>
         </div>
 
